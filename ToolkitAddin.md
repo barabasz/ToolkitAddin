@@ -43,7 +43,7 @@ ToolkitAddin to kolekcja funkcji VBA zaprojektowanych z myślą o:
   - `CompareArrays` – Porównuje zawartość dwóch tablic
 
 - **[Convert.bas](Convert.bas)** – Funkcje konwersji danych
-  - `HexToVBAColor` / `VBAToHexColor` – Konwersja kolorów między formatami
+  - `HexToVBAColor` / `VBAToHexColor` – Konwersja kolorów między formatami HEX i VBA
   - `VariantToString` – Konwertuje dowolny typ na string
 
 - **[CSV.bas](CSV.bas)** – Operacje na danych CSV
@@ -53,8 +53,12 @@ ToolkitAddin to kolekcja funkcji VBA zaprojektowanych z myślą o:
 ### Narzędzia pomocnicze
 
 - **[Files.bas](Files.bas)** – Operacje na plikach
-  - `GetFileName` / `GetFolderName` – Wyodrębnia nazwy z ścieżek
-  - `FileExists` / `FolderExists` – Sprawdza istnienie plików i folderów
+  - `GetFileName` – Wyodrębnia nazwę pliku ze ścieżki
+  -  `GetFolderName` – Wyodrębnia nazwę najwyższego folderu z ścieżki
+  - `FileExists` – Sprawdza istnienie pliku
+  - `FolderExists` – Sprawdza istnienie folderu
+  - `IsFolderWritable` – Sprawdza możliwość zapisu w folderze
+  - `IsFileWritable` – Sprawdza możliwość modyfikacji pliku
 
 - **[Clipboard.bas](Clipboard.bas)** – Operacje na schowku
   - `GetClipboard` – Odczytuje tekst ze schowka
