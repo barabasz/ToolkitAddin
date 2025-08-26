@@ -4,5 +4,5 @@ Dodatek do Microsoft Excel (XLAM) zawierający zestaw przydatnych funkcji VBA za
 
 ## Dokumentacja
 
-- [ToolkitAddin](ToolkitAddin.md)
-- [Klasa Logger](Logger.md)
+- [ToolkitAddin](ToolkitAddin.md) (całe rozszerzenie)
+- [Logger](Logger.md) (klasa Logger)
