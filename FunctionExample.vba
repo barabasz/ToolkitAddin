@@ -1,3 +1,11 @@
+' ====================== NAZEWNICTWO =======================
+
+' Używaj PascalCase dla nazw funkcj.
+' Używaj schematu Verb-Noun (VerbObject) czyli np. DeleteSheet, a nie SheetDelete
+' Unikaj skrótów i używaj pełnych, opisowych nazw (w języku angielskim)
+
+' ==================== PRZYKŁAD FUNKCJI ====================
+
 ' ------------------------------------------------------------
 ' Funkcja: FunctionExample
 ' Opis: zwięzła informacja co robi dana funkcja/procedura
