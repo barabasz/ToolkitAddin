@@ -4,7 +4,7 @@
 ' Paramerty:
 '   - param1: parametr 1 (typ parametru)
 '   - param2: parametr 2 (typ parametru)
-'   - targetWorkbook: opcjonalny skoroszyt docelowy; domyślnie: aktywny
+'   - targetWorkbook: opcjonalny skoroszyt docelowy; domyślnie: aktywny skoroszyt
 ' Zwraca:
 '   - True: informaja, kiedy zwraca True
 '   - False: informaja, kiedy zwraca False
@@ -22,14 +22,22 @@ Function FunctionExample(param1 As Variant, param2 As Variant, Optional targetWo
     log.SetLevel(1).ShowCaller(False).ShowTime(True).Start
     On Error GoTo ErrorHandler
     
-    ' Walidacja parametrów wejściowych
+    ' Walidacja obecności wymaganych parametrów wejściowych
     If IsMissing(param1) Or IsEmpty(param1) Then
         log.Error "Parametr param1 jest wymagany"
         FunctionExample = False
         GoTo CleanUp
     End If
 
+    ' Przykład walidacji dla parametrów, które muszą spełniać określone warunki
+    If TypeName(param1) <> "String" Or Len(param1) = 0 Then
+        log.Error "Parametr param1 musi być niepustym ciągiem znaków"
+        FunctionExample = False
+        GoTo CleanUp
+    End If
+
     ' opcjonalna sekcja do logowania parametrów funkcji
+    log.Dbg "Parametry funkcji:"
     log.var "param1", param1
     log.var "param2", param2
 
