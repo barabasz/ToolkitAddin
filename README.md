@@ -10,4 +10,5 @@ Dodatek do Microsoft Excel (XLAM) zawierający zestaw przydatnych funkcji VBA za
 ## Informacje
 
 - Autor: [Andrzej Barabasz](https://github.com/barabasz)
+- Licencja: [MIT License](LICENSE)
 - Repozytorium: [barabasz/ToolkitAddin](https://github.com/barabasz/ToolkitAddin)
