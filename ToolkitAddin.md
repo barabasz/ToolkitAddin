@@ -60,7 +60,7 @@ ToolkitAddin to kolekcja funkcji VBA zaprojektowanych z myślą o:
   - Różne poziomy logowania (Debug, Info, Warning, Error, Fatal)
   - Śledzenie czasu wykonania operacji
   - Logowanie do pliku
-  - Szczegółowa dokumentacja dostępna w pliku [Logger.md](https://github.com/barabasz/scripts/blob/main/vba/ToolkitAddin/Logger.md)
+  - Szczegółowa dokumentacja dostępna w pliku [Logger.md](Logger.md)
 
 ## Przykłady użycia
 
