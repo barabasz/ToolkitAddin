@@ -178,3 +178,123 @@ ErrorHandler:
     FileExists = False  ' W przypadku błędu zwróć False
     Resume CleanUp
 End Function
+
+' ------------------------------------------------------------
+' Funkcja: IsFolderWritable
+' Opis: Sprawdza, czy w podanym folderze można zapisywać pliki
+' Paramerty:
+'   - folderPath: ścieżka do folderu (String)
+' Zwraca:
+'   - True: jeśli folder istnieje i można w nim zapisywać
+'   - False: jeśli folder nie istnieje, jest tylko do odczytu lub wystąpił błąd
+' Wymagania: brak
+' Autor: github/barabasz
+' Data utworzenia: 2025-08-26
+' Data modyfikacji: 2025-08-26 07:54:40 UTC
+' ------------------------------------------------------------
+Function IsFolderWritable(ByVal folderPath As String) As Boolean
+    On Error GoTo ErrorHandler
+    
+    ' Sprawdź czy ścieżka nie jest pusta
+    If Len(Trim(folderPath)) = 0 Then
+        IsFolderWritable = False
+        Exit Function
+    End If
+    
+    ' Najpierw sprawdź czy folder istnieje
+    If Not FolderExists(folderPath) Then
+        IsFolderWritable = False
+        Exit Function
+    End If
+    
+    ' Spróbuj utworzyć tymczasowy plik w folderze
+    Dim tempFileName As String
+    Dim fileNum As Integer
+    
+    tempFileName = folderPath & IIf(Right(folderPath, 1) = "\", "", "\") & "test_write_" & Format(Now, "yyyymmddhhnnss") & ".tmp"
+    
+    fileNum = FreeFile
+    Open tempFileName For Output As #fileNum
+    Print #fileNum, "Test write permission"
+    Close #fileNum
+    
+    ' Jeśli doszliśmy do tego miejsca, oznacza to, że możemy zapisywać w folderze
+    ' Usuń tymczasowy plik
+    Kill tempFileName
+    
+    IsFolderWritable = True
+    Exit Function
+    
+ErrorHandler:
+    ' W przypadku błędu zwróć False
+    IsFolderWritable = False
+    
+    ' Jeśli plik był otwarty, zamknij go
+    On Error Resume Next
+    If fileNum > 0 Then Close #fileNum
+    On Error GoTo 0
+End Function
+
+' ------------------------------------------------------------
+' Funkcja: IsFileWritable
+' Opis: Sprawdza, czy dany plik można modyfikować (nie jest tylko do odczytu)
+' Paramerty:
+'   - filePath: ścieżka do pliku (String)
+' Zwraca:
+'   - True: jeśli plik istnieje i można go modyfikować
+'   - False: jeśli plik nie istnieje, jest tylko do odczytu lub wystąpił błąd
+' Wymagania: brak
+' Autor: github/barabasz
+' Data utworzenia: 2025-08-26
+' Data modyfikacji: 2025-08-26 07:54:40 UTC
+' ------------------------------------------------------------
+Function IsFileWritable(ByVal filePath As String) As Boolean
+    On Error GoTo ErrorHandler
+    
+    ' Sprawdź czy ścieżka nie jest pusta
+    If Len(Trim(filePath)) = 0 Then
+        IsFileWritable = False
+        Exit Function
+    End If
+    
+    ' Najpierw sprawdź czy plik istnieje
+    If Not FileExists(filePath) Then
+        IsFileWritable = False
+        Exit Function
+    End If
+    
+    Dim oFSO As Object
+    Set oFSO = CreateObject("Scripting.FileSystemObject")
+    
+    ' Sprawdź, czy plik jest tylko do odczytu
+    Dim readOnlyAttr As Boolean
+    readOnlyAttr = (GetAttr(filePath) And vbReadOnly) = vbReadOnly
+    
+    If readOnlyAttr Then
+        IsFileWritable = False
+    Else
+        ' Dodatkowa weryfikacja - spróbuj otworzyć plik do zapisu
+        Dim fileNum As Integer
+        fileNum = FreeFile
+        
+        Open filePath For Append As #fileNum
+        Close #fileNum
+        
+        IsFileWritable = True
+    End If
+    
+CleanUp:
+    ' Zwolnij obiekt
+    Set oFSO = Nothing
+    Exit Function
+    
+ErrorHandler:
+    IsFileWritable = False
+    
+    ' Jeśli plik był otwarty, zamknij go
+    On Error Resume Next
+    If fileNum > 0 Then Close #fileNum
+    On Error GoTo 0
+    
+    Resume CleanUp
+End Function
