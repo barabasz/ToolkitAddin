@@ -1,23 +1,11 @@
-# DOKUMENTACJA LOGGER v3.65 - STABLE
+# Logger
 
-## STATUS: WERSJA PRODUKCYJNA
-**Autor**: barabasz  
-**Data wydania**: 2025-08-12 14:30:26 UTC
+## Opis
 
-## ZMIANY W v3.65:
-- Dodana obsługa formatowania obiektów Range w metodzie Var()
-- Usprawniona obsługa obiektów Excel i zwracanie ich adresów
-- Drobne poprawki i optymalizacje kodu
+Logger to klasa logująca wykorzystywana przez rozszerzenie [ToolkitAddin](ToolkitAddin.md)
 
-## ZMIANY W v3.6:
-- Dodana metoda Cell() wyświetlająca informacje o aktywnej komórce
-- Drobne poprawki i optymalizacje kodu
+## Podstawowe użycie
 
-## ZMIANY W v3.5:
-- Rozszerzona obsługa tablic z możliwością wyświetlania ich zawartości
-- Dodane metody informacyjne: PrintDate(), PrintTime(), Workbook(), Sheet()
-
-## PODSTAWOWE UŻYCIE:
 ```vba
 '  Użycie jako AddIn z ToolkitAddin:
 Dim log As Logger
@@ -35,7 +23,8 @@ log.Info "Wiadomość"
 log.Done
 ```
 
-## FLUENT API:
+## Fluent API
+
 Fluent API pozwala łączyć wywołania metod w jeden łańcuch, co daje bardziej zwięzły i czytelny kod. Wszystkie metody klasy Logger mogą być łańcuchowane.
 
 ```vba
@@ -54,19 +43,22 @@ With log
 End With
 ```
 
-## LOGOWANIE DO PLIKU:
+## Logowanie do pliku
+
 - **LogToFile(enable)** - Włącza/wyłącza logowanie do pliku
 - **SetLogFolder(folderPath)** - Ustawia folder plików logów (domyślnie %TEMP%)
 - **SetLogFilename(filename)** - Ustawia nazwę pliku logów (domyślnie generowana)
 
-## METODY USTAWIANIA:
+## Metody ustawiania
+
 - **SetCaller(name)** - Ustawia nazwę wywołującej funkcji
 - **SetLevel(level)** - Poziom logowania (0-4)
 - **ShowTime(show)** - Kontrola czasu (domyślnie True)
 - **ShowCaller(show)** - Kontrola caller (domyślnie False)
 - **ShowLine(show)** - Kontrola linii separatora (domyślnie False)
 
-## METODY INFORMACYJNE:
+## Metody informacyjne
+
 - **Caller()** - [THIS] Wyświetla aktualny caller
 - **Level()** - [INFO] Wyświetla aktualny poziom
 - **PrintTime()** - [TIME] Wyświetla aktualny czas (hh:mm:ss)
@@ -76,7 +68,8 @@ End With
 - **Sheet()** - [SHEET] Wyświetla aktywny arkusz
 - **PrintLine()** - Wyświetla linię separatora
 
-## METODY LOGOWANIA:
+## Metody logowania
+
 - **Start()** - [START] Rozpoczęcie z datą (+ CALLER)
 - **Done()** - [DONE] Zakończenie z czasem (+ CALLER)
 - **Duration()** - [DURA] Aktualny czas trwania
@@ -91,14 +84,16 @@ End With
 - **CatchException(msg)** - [EXC] Alias Exception
 - **TryLog(operation)** - [DBG] Ryzykowne operacje
 
-## METODY PROGRESS:
+## Metody progress
+
 - **ProgressName(name)** - Nazwa procesu
 - **ProgressMax(value)** - Maksymalna wartość
 - **ProgressStart()** - %000% Rozpoczęcie z pomiarem
 - **Progress(current)** - %XXX% Aktualny postęp
 - **ProgressEnd()** - %100% Zakończenie z czasem
 
-## PRZYKŁAD UŻYCIA PROGRESS:
+## Przykład użycia progress
+
 ```vba
 Sub PrzykładProgress()
     Dim log As New Logger
@@ -130,7 +125,8 @@ Sub PrzykładProgress()
 End Sub
 ```
 
-## WŁAŚCIWOŚCI (TYLKO ODCZYT):
+## Właściwości (tylko do odczytu)
+
 - **GetCaller** - Aktualny caller
 - **GetLevel** - Aktualny poziom
 - **GetShowCaller** - Ustawienie caller
@@ -140,7 +136,8 @@ End Sub
 - **GetLogFilePath** - Ścieżka do pliku logów
 - **IsLoggingToFile** - Czy logowanie do pliku jest włączone
 
-## POZIOMY LOGOWANIA:
+## Poziomy logowania
+
 - **0 = Debug** - [DBUG], [VAR], TryLog (wszystkie)
 - **1 = Info** - [INFO], [OKAY], [DURA], Progress, Caller(), Level()
 - **2 = Warning** - [WARN] i wyżej
@@ -149,8 +146,9 @@ End Sub
 
 Start() i Done() ZAWSZE widoczne!
 
-## OBSŁUGA TABLIC I OBIEKTÓW EXCEL:
-Logger v3.65 oferuje rozszerzoną obsługę tablic i obiektów Excel:
+## Obsługa tablic i obiektów Excel
+
+Logger oferuje rozszerzoną obsługę tablic i obiektów Excel:
 
 ```vba
 ' Obsługa tablic
@@ -171,3 +169,34 @@ log.Var "aktywny arkusz", ActiveSheet
 ```
 
 Dla dużych tablic pokazuje tylko pierwsze 10 elementów.
+
+## Wymagania
+
+- Microsoft Excel 2010 lub nowszy
+
+## Autor
+
+[github/barabasz](https://github.com/barabasz)
+
+## Data ostatniej aktualizacji
+
+2025-08-26
+
+## Ostatnie zmiany
+
+### v3.65:
+
+- Dodana obsługa formatowania obiektów Range w metodzie Var()
+- Usprawniona obsługa obiektów Excel i zwracanie ich adresów
+- Drobne poprawki i optymalizacje kodu
+
+### v3.6:
+
+- Dodana metoda Cell() wyświetlająca informacje o aktywnej komórce
+- Drobne poprawki i optymalizacje kodu
+
+### v3.5:
+
+- Rozszerzona obsługa tablic z możliwością wyświetlania ich zawartości
+- Dodane metody informacyjne: PrintDate(), PrintTime(), Workbook(), Sheet()
+
