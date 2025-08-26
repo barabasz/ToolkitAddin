@@ -6,6 +6,7 @@ Dodatek do Microsoft Excel (XLAM) zawierający zestaw przydatnych funkcji VBA za
 
 - [ToolkitAddin](ToolkitAddin.md) (całe rozszerzenie)
 - [Logger](Logger.md) (klasa Logger)
+- [FunctionExample](https://github.com/barabasz/ToolkitAddin/blob/main/FunctionExample.vba) (szablon funkcji)
 
 ## Informacje
 
