@@ -8,11 +8,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 ' Logger v3.65
-' Autor: barabasz
+' Autor: github/barabasz
 ' Data utworzenia: 2025-07-30
-' Data modyfikacji: 2025-08-12 12:53:48 UTC
-' Status: Wersja produkcyjna
-' Repo: github.com/barabasz/scripts/blob/main/vba/ToolkitAddin/Logger.cls
+' Data modyfikacji: 2025-08-25 12:53:48 UTC
+' Dokumentacja: https://github.com/barabasz/ToolkitAddin/blob/main/Logger.md
 
 Option Explicit
 
@@ -699,3 +698,4 @@ Public Function Progress(current As Long) As Logger
     WriteLog message, percentStr
     Set Progress = Me
 End Function
+
