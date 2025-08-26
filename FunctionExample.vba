@@ -12,9 +12,9 @@
 '   - wynik = FunctionExample("tekst", 123)
 ' Wymagania: [ewentualne zależności: inne funkcje, klasy, itp.]
 ' Autor: github/barabasz
-' Data utworzenia: 2025-08-26
+' Data utworzenia: 2025-08-25
 ' Data modyfikacji: 2025-08-26 08:38:00 UTC
-' Ostatnia zmiana: pierwsza wersja
+' Ostatnia zmiana: [opcjonalny zwięzły opis ostatniej zmiany]
 ' ------------------------------------------------------------
 Function FunctionExample(param1 As Variant, param2 As Variant, Optional targetWorkbook As Workbook = Nothing) As Boolean
     ' Inicjalizacja loggera
@@ -28,7 +28,11 @@ Function FunctionExample(param1 As Variant, param2 As Variant, Optional targetWo
         FunctionExample = False
         GoTo CleanUp
     End If
-    
+
+    ' opcjonalna sekcja do logowania parametrów funkcji
+    log.var "param1", param1
+    log.var "param2", param2
+
     ' Określenie skoroszytu docelowego
     ' (dotyczy funkcji, które odwołują się do danych w skoroszycie)
     Dim wb As Workbook
@@ -37,18 +41,22 @@ Function FunctionExample(param1 As Variant, param2 As Variant, Optional targetWo
     Else
         Set wb = targetWorkbook
     End If
-    
+
+    log.Info "Rozpoczynam główną operację funkcji..."
     ' ... kod główny ...
+    log.Ok "Operacja zakończona sukcesem"
     
     ' Przypisanie wartości zwracanej w przypadku sukcesu
     FunctionExample = True
     
+' opcjonalna sekcja do zwalniania zasobów
 CleanUp:
     ' Zwolnienie zasobów
     log.Done
     Set log = Nothing
     Exit Function
-    
+
+' sekcja do obsługi błędów
 ErrorHandler:
     ' Obsługa błędu
     log.Exception "Błąd " & Err.Description & " (Numer błędu: " & Err.Number & ")"
