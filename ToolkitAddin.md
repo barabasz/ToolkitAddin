@@ -1,7 +1,5 @@
 # ToolkitAddin
 
-Dodatek do Microsoft Excel zawierający zestaw przydatnych funkcji VBA zaprojektowanych do usprawnienia codziennej pracy z danymi, tabelami, SQL i innymi elementami arkuszy.
-
 ## Opis
 
 ToolkitAddin to kolekcja funkcji VBA zaprojektowanych z myślą o:
