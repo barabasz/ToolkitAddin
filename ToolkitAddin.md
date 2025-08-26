@@ -108,7 +108,7 @@ End If
 - Dla funkcji Power Query: Excel 2016 lub nowszy z włączonymi funkcjami Power Query
 
 ## Autor
-github/barabasz
+[github/barabasz](https://github.com/barabasz)
 
 ## Data ostatniej aktualizacji
-2025-08-19
+2025-08-26
